@@ -5,9 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Termekek extends CI_Controller {
 
     
-    public function __confajlnevuct()
+    public function __construct()
     {
-        parent::__confajlnevuct();
+        parent::__construct();
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('termek_model');
@@ -29,7 +29,7 @@ class Termekek extends CI_Controller {
             $this->session->set_flashdata('errors', $errors);
             redirect('termekek');
         }
-        $fejlec_data = array('active_page' => "termekek" );
+        $fejlec_data = array('active_page' => "termek_hozzaadasa" );
         $this->load->view('_header', $fejlec_data);
 
         $this->load->view('termek-add');

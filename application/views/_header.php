@@ -28,6 +28,12 @@
       <li id="nav_termekek" class="nav-item">
         <a class="nav-link" href="<?php echo base_url() ?>termekek">Termékek</a>
       </li>
+      
+      <?php if ($this->session->userdata('user') != null && $this->session->userdata('user')['jogosultsag'] > 0): ?>
+      <li id="nav_termek_hozzaadasa" class="nav-item">
+        <a class="nav-link" href="<?php echo base_url() ?>termekek/termek_hozzaadasa">Termék hozzáadása</a>
+      </li>
+      <?php endif; ?>
       <!--
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
