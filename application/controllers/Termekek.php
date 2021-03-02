@@ -19,7 +19,9 @@ class Termekek extends CI_Controller {
         $fejlec_data = array('active_page' => "termekek" );
         $this->load->view('_header', $fejlec_data);
 
-        $this->load->view('termekek');
+        $termekek = $this->termek_model->select_termek();
+        $data['termekek'] = $termekek;
+        $this->load->view('termekek', $data);
     }
 
     public function termek_hozzaadasa()
