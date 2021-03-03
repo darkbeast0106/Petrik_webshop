@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Petrik Webshop</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <?php if ($this->session->userdata('szin_tema')): ?>
+      <link rel="stylesheet" href="<?php echo base_url() ?>util/css/bootstrap/bootstrap.min_<?php echo $this->session->userdata('szin_tema') ?>.css">
+    <?php else: ?>
+      <link rel="stylesheet" href="<?php echo base_url() ?>util/css/bootstrap/bootstrap.min_0.css">
+    <?php endif; ?>
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Popper JS -->
@@ -22,7 +27,7 @@
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li id="nav_fooldal" class="nav-item">
+      <li id="nav_home" class="nav-item">
         <a class="nav-link" href="<?php echo base_url(); ?>">Főoldal</a>
       </li>
       <li id="nav_termekek" class="nav-item">
@@ -43,6 +48,13 @@
       </li>
       -->
     </ul>
+    <form action="<?php base_url() ?>home/tema_valtasa" class="form-inline my-2 my-lg-0">
+      <?php if (isset($active_page)): ?>
+      <input type="hidden" name="active_page" value="<?php echo $active_page ?>">
+      <?php endif; ?>
+      <button class="btn btn-primary" type="submit">Téma váltása</button>
+    </form>
+
     <?php if ($this->session->userdata('user') != null): ?>
         
     <form action="<?php base_url() ?>home/kijelentkezes" class="form-inline my-2 my-lg-0">

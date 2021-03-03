@@ -10,19 +10,21 @@ class Home extends CI_Controller {
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('felhasznalo_model');
-        
+        if (!$this->session->userdata('szin_tema')) {
+            $array = array(
+                'szin_tema' => 0
+            );
+            $this->session->set_userdata( $array );
+        }
     }
     
 
     public function index()
     {
-        $fejlec_data = array('active_page' => "fooldal" );
+        $fejlec_data = array('active_page' => "home" );
         $this->load->view('_header', $fejlec_data);
 
         $this->load->view('home_page');
-        if ($this->session->userdata('user')) {
-            redirect('termekek');
-        }
     }
 
     public function regisztracio()
@@ -68,6 +70,10 @@ class Home extends CI_Controller {
         $data['jelszo'] = password_hash($jelszo, PASSWORD_DEFAULT);
         $data['telj_nev'] = $telj_nev;
         $data['cim'] = $cim;
+
+        $szin_tema = $this->session->userdata('szin_tema');
+        
+        $data['szin_tema'] = $szin_tema;
 
         $id = $this->felhasznalo_model->insert_felhasznalo($data);
         $success = "Sikeres regisztráció a következő id-val: ".$id;
@@ -124,6 +130,12 @@ class Home extends CI_Controller {
         
         $this->session->set_userdata('user', $user_data );
         
+        $array = array(
+            'szin_tema' => $user['szin_tema']
+        );
+        
+        $this->session->set_userdata( $array );
+        
         $this->session->set_flashdata('success', $success);
         redirect('');
     }
@@ -134,6 +146,29 @@ class Home extends CI_Controller {
         $success = "Sikeres kijelentkezés";
         $this->session->set_flashdata('success', $success);
         redirect('');
+    }
+
+    public function tema_valtasa()
+    {
+        $active_page = $this->input->post('active_page');
+        $szin_tema = $this->session->userdata('szin_tema');
+        $szin_tema++;
+        
+        if ($szin_tema > 1) {
+            $szin_tema = 0;
+        }
+        
+        $array = array(
+            'szin_tema' => $szin_tema
+        );
+        
+        $this->session->set_userdata( $array );
+
+        if ($this->session->userdata('user')) {
+            $id = $this->session->userdata('user')['id'];
+            $this->felhasznalo_model->update_felhasznalo($id, $array);
+        }
+        redirect($active_page);
     }
 
 }
