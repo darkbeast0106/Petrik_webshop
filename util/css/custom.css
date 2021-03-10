@@ -1,0 +1,11 @@
+.img-container{
+    height: 150px;
+    background-color: black;
+    text-align: center;
+}
+
+.card-img-top {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+}

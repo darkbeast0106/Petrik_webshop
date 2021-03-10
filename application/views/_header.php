@@ -11,6 +11,8 @@
     <?php else: ?>
       <link rel="stylesheet" href="<?php echo base_url() ?>util/css/bootstrap/bootstrap.min_0.css">
     <?php endif; ?>
+    
+    <link rel="stylesheet" href="<?php echo base_url() ?>util/css/custom.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Popper JS -->
@@ -48,7 +50,7 @@
       </li>
       -->
     </ul>
-    <form action="<?php base_url() ?>home/tema_valtasa" class="form-inline my-2 my-lg-0">
+    <form action="<?php base_url() ?>home/tema_valtasa" method="POST" class="form-inline my-2 my-lg-0">
       <?php if (isset($active_page)): ?>
       <input type="hidden" name="active_page" value="<?php echo $active_page ?>">
       <?php endif; ?>

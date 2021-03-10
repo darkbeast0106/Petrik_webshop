@@ -1,21 +1,26 @@
     <div class="container">
         <div class="row">
             <?php foreach ($termekek as $termek): ?>
-                <div class="col-md-3 col-6">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="<?php echo base_url().'util/img/upload/'.$termek['kep']; ?>" alt="Card image cap">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex">
+                    <div class="card flex-fill">
+                        <div class="img-container">
+                            <img class="card-img-top" src="<?php echo base_url().'util/img/upload/'.$termek['kep']; ?>" alt="Card image cap">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $termek['nev'] ?></h5>
                             <p class="card-text"><?php echo $termek['leiras'] ?></p>
-                            <hr>
-                            <p><?php echo $termek['ar'] ?> Ft</p>
+                        </div>
+                        
+                        <div class="card-footer">
+                        
+                        <p><?php echo $termek['ar'] ?> Ft</p>
                             <div class="row">
-
-                            <a href="#" class="btn btn-primary">Kosárba</a>
+                            <a href="#" class="btn btn-primary col-6">Kosárba</a>
+                            <a href="#" class="btn btn-success col-6">Részletek</a>
                             <?php if ($this->session->userdata('user') != null && $this->session->userdata('user')['jogosultsag'] > 0): ?>
-                                <a href="#" class="btn btn-danger">Törlés</a>
+                            <a href="#" class="btn btn-danger col-6">Törlés</a>
 
-                                <a href="#" class="btn btn-warning">Módosít</a>
+                            <a href="#" class="btn btn-warning  col-6">Módosít</a>
                             <?php endif; ?>
                             </div>
                         </div>
