@@ -11,6 +11,7 @@
     <?php else: ?>
       <link rel="stylesheet" href="<?php echo base_url() ?>util/css/bootstrap/bootstrap.min_0.css">
     <?php endif; ?>
+    <link rel="stylesheet" href="<?php echo base_url() ?>util/css/custom.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Popper JS -->

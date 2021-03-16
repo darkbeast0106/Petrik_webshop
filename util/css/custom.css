@@ -1,0 +1,9 @@
+.img-container{
+    height: 150px;
+    text-align: center;
+}
+.card-img-top{
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+}
