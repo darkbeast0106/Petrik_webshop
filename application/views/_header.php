@@ -48,7 +48,7 @@
       </li>
       -->
     </ul>
-    <form action="<?php base_url() ?>home/tema_valtasa" class="form-inline my-2 my-lg-0">
+    <form action="<?php base_url() ?>home/tema_valtasa" method="POST" class="form-inline my-2 my-lg-0">
       <?php if (isset($active_page)): ?>
       <input type="hidden" name="active_page" value="<?php echo $active_page ?>">
       <?php endif; ?>
