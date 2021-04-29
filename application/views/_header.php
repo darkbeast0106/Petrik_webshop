@@ -40,6 +40,18 @@
         <a class="nav-link" href="<?php echo base_url() ?>termekek/termek_hozzaadasa">Termék hozzáadása</a>
       </li>
       <?php endif; ?>
+      
+      <?php if ($this->session->userdata('user') != null && $this->session->userdata('user')['jogosultsag'] > 1): ?>
+      <li id="nav_felhasznalo" class="nav-item">
+        <a class="nav-link" href="<?php echo base_url() ?>felhasznalo">Felhasználók</a>
+      </li>
+      <?php endif; ?>
+
+      <?php if ($this->session->userdata('user') != null): ?>
+      <li id="nav_felhasznaloi_beallitasok" class="nav-item">
+        <a class="nav-link" href="<?php echo base_url() ?>felhasznalo/felhasznaloi_beallitasok">Felhasználói Beállítások</a>
+      </li>
+      <?php endif; ?>
       <!--
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
