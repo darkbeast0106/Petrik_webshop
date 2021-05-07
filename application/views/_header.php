@@ -18,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -60,6 +61,11 @@
         <a class="nav-link" href="#">About</a>
       </li>
       -->
+    </ul>
+    <ul class="navbar-nav navbar-right">
+      <li id="nav_kosar" class="nav-item">
+        <a class="nav-link" href="<?php echo base_url() ?>kosar"><i class="fas fa-shopping-cart"></i></a>
+      </li>      
     </ul>
     <form action="<?php echo base_url() ?>home/tema_valtasa" method="POST" class="form-inline my-2 my-lg-0">
       <?php if (isset($active_page)): ?>

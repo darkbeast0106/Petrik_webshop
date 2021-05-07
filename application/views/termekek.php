@@ -14,7 +14,7 @@
                             <p><?php echo $termek['ar'] ?> Ft</p>
 
                             <div class="row">
-                            <a href="#" class="btn btn-primary col-6">Kosárba</a>
+                            <button onclick="kosarba(<?php echo $termek['id'] ?>, `<?php echo $termek['nev'] ?>`, <?php echo $termek['ar'] ?>)" class="btn btn-primary col-6">Kosárba</button>
                             <a href="#" class="btn btn-success col-6">Részletek</a>
                             <?php if ($this->session->userdata('user') != null && $this->session->userdata('user')['jogosultsag'] > 0): ?>
                                 <a href="#" class="btn btn-danger col-6">Törlés</a>
@@ -39,6 +39,23 @@
     <?php endif; ?>
     </div>
 -->
-
+<script>
+function kosarba(id, nev, ar) {
+    var url = "<?php echo base_url(); ?>kosar/kosar_insert"
+    $.post(url, 
+        {
+            id : id,
+            nev : nev,
+            ar : ar
+        },
+        function (data, textStatus) {
+            if (textStatus == "success") {
+                console.log(data);
+            }
+        },
+        "json"
+    );
+}
+</script>
 </body>
 </html>
