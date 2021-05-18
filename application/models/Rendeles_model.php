@@ -45,22 +45,22 @@ class Rendeles_model extends CI_Model {
         return $this->db->get('rendeles')->result_array();
     }
     
-    public function insert_rendelesi_tetel($data)
+    public function insert_rendeles_tetel($data)
     {
-        $this->db->insert('rendelesi_tetel', $data);
+        $this->db->insert('rendeles_tetel', $data);
         return $this->db->insert_id();
     }
 
-    public function update_rendelesi_tetel($id, $data)
+    public function update_rendeles_tetel($id, $data)
     {
         $this->db->where('id', $id);
-        $this->db->update('rendelesi_tetel', $data);
+        $this->db->update('rendeles_tetel', $data);
     }
 
-    public function delete_rendelesi_tetel($id)
+    public function delete_rendeles_tetel($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('rendelesi_tetel');
+        $this->db->delete('rendeles_tetel');
     }
     /*
     $where = array(
@@ -68,14 +68,14 @@ class Rendeles_model extends CI_Model {
         'ar' => 100,
      );
     */
-    public function select_rendelesi_tetel($where = "")
+    public function select_rendeles_tetel($where = "")
     {
         if ($where != "") {
             foreach ($where as $key => $value) {
                 $this->db->where($key, $value);
             }
         }
-        return $this->db->get('rendelesi_tetel')->result_array();
+        return $this->db->get('rendeles_tetel')->result_array();
     }
 
 }

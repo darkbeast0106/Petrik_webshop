@@ -54,13 +54,49 @@
 </tfoot>
 </table>
 
-<div style="text-align: right;">
-<button class="btn btn-primary">Kosár frissítése</button>
-<button class="btn btn-primary">Megrendel</button>
+    <?php if (count($this->cart->contents()) > 0): ?>
+    
+    <div style="text-align: right;">
+        <button class="btn btn-primary">Kosár frissítése</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#rendeles_modal">Megrendel</button>
+    </div>
+    <?php endif; ?>
 </div>
 
- </div>
+<!-- The Modal -->
+<div class="modal" id="rendeles_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Rendelési adatok</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <form method="post" action="<?php echo base_url() ?>rendeles/rendeles_felvetele">
+      <!-- Modal body -->
+      <div class="modal-body">
+            <div class="form-group">
+                <label class="col-form-label mt-4" for="szallitasi_cim">Szállítási cím</label>
+                <input type="text" class="form-control" placeholder="Szállítási cím" id="szallitasi_cim" name="szallitasi_cim" required maxlength="200">
+            </div>
+            <div class="form-group">
+            <label for="megjegyzes" class="form-label mt-4">Megjegyzes</label>
+            <textarea class="form-control" id="megjegyzes" rows="3" name="megjegyzes"></textarea>
+            </div> 
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Megrendel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Mégse</button>
+      </div>
+    
+      </form>
+    </div>
+  </div>
+</div>
+ 
  
 </body>
 </html>
