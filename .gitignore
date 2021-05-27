@@ -30,7 +30,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 
-util/img/upload/*
+# util/img/upload/*
 !util/img/upload/index.html
 .vscode
 .vscode/*
