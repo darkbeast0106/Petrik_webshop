@@ -1,7 +1,17 @@
 <div class="container">
+    <?php if ($this->session->userdata('user')['jogosultsag'] == 2): ?>
+        <?php if ($osszes): ?>
+        <a href="<?php echo base_url() ?>rendeles" class="btn btn-lg btn-primary mt-3 mb-3"  style="width: 100%;">Csak a saját rendelések megjelenítése</a>
+        <?php else: ?>
+        <a href="<?php echo base_url() ?>rendeles/osszes" class="btn btn-lg btn-primary mt-3 mb-3"  style="width: 100%;">Összes megjelenítése</a>
+        <?php endif; ?>
+    <?php endif; ?>
     <table class="table table-striped">
         <thead >
             <tr>
+                <?php if ($osszes): ?>
+                <th>Megrendelő</th>
+                <?php endif; ?>
                 <th>Szállítási cím</th>
                 <th>Rendelés időpontja</th>
                 <th>Megjegyzés</th>
@@ -12,7 +22,10 @@
         <?php $count = 0; ?>
         <?php foreach ($rendelesek as $rendeles): ?>
             <tr>
-                <th><?php echo $rendeles['szallitasi_cim'] ?></th>
+                <?php if ($osszes): ?>
+                <td><?php echo $rendeles['megrendelo_teljes_nev'] ?></td>
+                <?php endif; ?>
+                <td><?php echo $rendeles['szallitasi_cim'] ?></td>
                 <td><?php echo $rendeles['rendeles_idopontja'] ?></td>
                 <?php if ($rendeles['megjegyzes'] == ""): ?>
                 <td>-</td>

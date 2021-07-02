@@ -12,16 +12,23 @@ class Rendeles extends CI_Controller {
         $this->load->library('session');
         $this->load->model('rendeles_model');
         $this->load->model('termek_model');
+        $this->load->model('felhasznalo_model');
         
     }
     
-    public function index()
+    public function index($osszes = "")
     {
         $fejlec_data = array('active_page' => "rendeles" );
         $this->load->view('_header', $fejlec_data);
+        $data = array();
 
-        //TODO - adminnak lehetőség összes rendelés listázására
         $where = array('rendelo_id' => $this->session->userdata('user')['id'] );
+        if ($this->session->userdata('user')['jogosultsag'] == 2 && $osszes == "osszes") {
+            $where = "";
+            $data['osszes'] = true;
+        } else{
+            $data['osszes'] = false;
+        }
         $rendelesek =  $this->rendeles_model->select_rendeles($where);
         foreach ($rendelesek as $key => $rendeles) {
             $termek_lista = "<ul>";
@@ -37,6 +44,10 @@ class Rendeles extends CI_Controller {
             $rendelesek[$key]["tetelek"] = $tetelek;
             $rendelesek[$key]["termek_lista"] = $termek_lista;
             $rendelesek[$key]["tetel_szam"] = count($tetelek);
+
+            $where = array('id' => $rendeles['rendelo_id']);
+            $megrendelo = $this->felhasznalo_model->select_felhasznalo($where)[0];
+            $rendelesek[$key]["megrendelo_teljes_nev"] = $megrendelo['telj_nev'];
         }
 
         $data["rendelesek"] = $rendelesek;

@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['termek_hozzaadasa'] = "termekek/termek_hozzaadasa";
 $route['felhasznaloi_beallitasok'] = "felhasznalo/felhasznaloi_beallitasok";
+$route['rendeles/osszes'] = "rendeles/index/osszes";
 
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
