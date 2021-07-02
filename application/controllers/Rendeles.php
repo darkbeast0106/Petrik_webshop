@@ -11,6 +11,7 @@ class Rendeles extends CI_Controller {
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('rendeles_model');
+        $this->load->model('termek_model');
         
     }
     
@@ -19,7 +20,27 @@ class Rendeles extends CI_Controller {
         $fejlec_data = array('active_page' => "rendeles" );
         $this->load->view('_header', $fejlec_data);
 
-        $this->load->view('rendelesek');
+        //TODO - adminnak lehetőség összes rendelés listázására
+        $where = array('rendelo_id' => $this->session->userdata('user')['id'] );
+        $rendelesek =  $this->rendeles_model->select_rendeles($where);
+        foreach ($rendelesek as $key => $rendeles) {
+            $termek_lista = "<ul>";
+            $where = array('rendeles_id' => $rendeles['id']);
+            $tetelek = $this->rendeles_model->select_rendeles_tetel($where);
+            foreach ($tetelek as $tetel_key => $tetel) {
+                $where = array('id' => $tetel['termek_id'] );
+                $termek = $this->termek_model->select_termek($where)[0];
+                $tetelek[$tetel_key]["termek"] = $termek;
+                $termek_lista .= "<li>".$termek['nev'] .' - '. $tetel['darab'] . "db</li>";
+            }
+            $termek_lista .= "</ul>";
+            $rendelesek[$key]["tetelek"] = $tetelek;
+            $rendelesek[$key]["termek_lista"] = $termek_lista;
+            $rendelesek[$key]["tetel_szam"] = count($tetelek);
+        }
+
+        $data["rendelesek"] = $rendelesek;
+        $this->load->view('rendelesek', $data);
     }
     
     public function rendeles_felvetele()

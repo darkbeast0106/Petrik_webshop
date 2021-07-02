@@ -53,14 +53,12 @@
         <a class="nav-link" href="<?php echo base_url() ?>felhasznalo/felhasznaloi_beallitasok">Felhasználói Beállítások</a>
       </li>
       <?php endif; ?>
-      <!--
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+      <?php if ($this->session->userdata('user') != null): ?>
+      <li id="nav_rendeles" class="nav-item">
+        <a class="nav-link" href="<?php echo base_url() ?>rendeles">Rendelések</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-      -->
+      <?php endif; ?>
+
     </ul>
     <ul class="navbar-nav navbar-right">
       <li id="nav_kosar" class="nav-item">

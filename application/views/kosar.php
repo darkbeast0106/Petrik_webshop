@@ -88,6 +88,7 @@
       </div>
       <!-- Modal footer -->
       <div class="modal-footer">
+        <!-- TODO: kosár frissítése javascripttel -->
         <button type="submit" class="btn btn-primary">Megrendel</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Mégse</button>
       </div>
