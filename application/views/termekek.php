@@ -15,11 +15,11 @@
 
                             <div class="row">
                             <button onclick="kosarba(<?php echo $termek['id'] ?>, `<?php echo $termek['nev'] ?>`, <?php echo $termek['ar'] ?>)" class="btn btn-primary col-6">Kosárba</button>
-                            <a href="#" class="btn btn-success col-6">Részletek</a>
+                            <a href="<?php echo base_url()."termekek/termek_reszletek/".$termek['id'] ; ?>" class="btn btn-success col-6">Részletek</a>
                             <?php if ($this->session->userdata('user') != null && $this->session->userdata('user')['jogosultsag'] > 0): ?>
                                 <a href="#" class="btn btn-danger col-6">Törlés</a>
 
-                                <a href="#" class="btn btn-warning col-6">Módosít</a>
+                                <a href="<?php echo base_url()."termekek/termek_modositasa/".$termek['id'] ; ?>"  class="btn btn-warning col-6">Módosít</a>
                             <?php endif; ?>
                             </div>
                         </div>
