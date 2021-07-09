@@ -56,5 +56,23 @@
             <?php endforeach; ?>
         </div>
     </div>
+<script>
+function kosarba(id, nev, ar) {
+    var url = "<?php echo base_url(); ?>kosar/kosar_insert"
+    $.post(url, 
+        {
+            id : id,
+            nev : nev,
+            ar : ar
+        },
+        function (data, textStatus) {
+            if (textStatus == "success") {
+                console.log(data);
+            }
+        },
+        "json"
+    );
+}
+</script>
 </body>
 </html>
