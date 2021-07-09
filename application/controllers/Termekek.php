@@ -253,6 +253,40 @@ class Termekek extends CI_Controller {
         $this->session->set_flashdata('success', $success);
         redirect('termekek');
     }
+
+    public function termek_kiemeles()
+    {
+        
+        $this->load->library('form_validation');
+        
+        $this->form_validation->set_rules('termek_id', 'Termék id', 'trim|required');
+        $this->form_validation->set_rules('kiemelt', 'Kiemelt-e?', 'trim|required');
+        $this->form_validation->set_rules('reszletek', 'Átirányítás', 'trim|required');
+        
+        if($this->form_validation->run() == FALSE) {
+            $errors = validation_errors();
+            $this->session->set_flashdata('errors', $errors);
+            $this->session->set_flashdata('last_request', $this->input->post());
+            redirect('termekek');
+        } 
+
+        $id = $this->input->post('termek_id');
+        $kiemelt = $this->input->post('kiemelt');
+
+        $data = array(
+            'kiemelt' => $kiemelt, 
+        );
+        
+        $this->termek_model->update_termek($id, $data);
+        $success = "Sikeres termék kiemelés módosítása! A módosított termék id-ja: ".$id;
+        $this->session->set_flashdata('success', $success);
+
+        $reszletek = $this->input->post('reszletek');
+        if ($reszletek == 1) {
+            redirect('termekek/termek_reszletek/'.$id);
+        }
+        redirect('termekek');
+    }
 }
 
 /* End of file Termekek.php */

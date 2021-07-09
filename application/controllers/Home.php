@@ -10,6 +10,7 @@ class Home extends CI_Controller {
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('felhasznalo_model');
+        $this->load->model('termek_model');
         if (!$this->session->userdata('szin_tema')) {
             $array = array(
                 'szin_tema' => 0
@@ -24,7 +25,10 @@ class Home extends CI_Controller {
         $fejlec_data = array('active_page' => "home" );
         $this->load->view('_header', $fejlec_data);
 
-        $this->load->view('home_page');
+        $where = array('kiemelt' => 1);
+        $termekek = $this->termek_model->select_termek($where);
+        $data['termekek'] = $termekek;
+        $this->load->view('home_page', $data);
     }
 
     public function regisztracio()

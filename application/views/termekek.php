@@ -17,12 +17,26 @@
                             <button onclick="kosarba(<?php echo $termek['id'] ?>, `<?php echo $termek['nev'] ?>`, <?php echo $termek['ar'] ?>)" class="btn btn-primary col-6">Kosárba</button>
                             <a href="<?php echo base_url()."termekek/termek_reszletek/".$termek['id'] ; ?>" class="btn btn-success col-6">Részletek</a>
                             <?php if ($this->session->userdata('user') != null && $this->session->userdata('user')['jogosultsag'] > 0): ?>
-                                <form class="col-6 p-0" action="<?php echo base_url() ?>termekek/termek_arhivalasa" method="post" onsubmit="confirm('Biztosan szeretné törölni a terméket?')">
+                                <form class="col-6 p-0" action="<?php echo base_url() ?>termekek/termek_arhivalasa" method="post" onsubmit="return confirm('Biztosan szeretné törölni a terméket?')">
                                 <input type="hidden" name="termek_id" value="<?php echo $termek['id'] ?>">
                                 <button style="width: 100%;" class="btn btn-danger">Törlés</button>
                                 </form>
 
-                                <a href="<?php echo base_url()."termekek/termek_modositasa/".$termek['id'] ; ?>"  class="btn btn-warning col-6">Módosít</a>
+                                <a href="<?php echo base_url()."termekek/termek_modositasa/".$termek['id'] ; ?>"  class="btn btn-warning col-6">Módosít</a> 
+                                <?php if ($termek['kiemelt'] == 0): ?>
+                                <form class="col-12 p-0" action="<?php echo base_url() ?>termekek/termek_kiemeles" method="post" onsubmit="return confirm('Biztosan szeretné kiemelni a terméket?')">
+                                <input type="hidden" name="termek_id" value="<?php echo $termek['id'] ?>">
+                                <input type="hidden" name="kiemelt" value="0">
+                                <input type="hidden" name="reszletek" value="0">
+                                <button style="width: 100%;" class="btn btn-info">Kiemelés</button>                                    
+                                <?php else: ?>
+                                <form class="col-12 p-0" action="<?php echo base_url() ?>termekek/termek_kiemeles" method="post" onsubmit="return confirm('Biztosan szeretné megszüntetni a termék kiemelését?')">
+                                <input type="hidden" name="termek_id" value="<?php echo $termek['id'] ?>">
+                                <input type="hidden" name="kiemelt" value="0">
+                                <input type="hidden" name="reszletek" value="0">
+                                <button style="width: 100%;" class="btn btn-info">Kiemelés megszüntetése</button>       
+                                <?php endif; ?>
+                        </form>
                             <?php endif; ?>
                             </div>
                         </div>
