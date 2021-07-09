@@ -18,8 +18,8 @@ class Termekek extends CI_Controller {
     {
         $fejlec_data = array('active_page' => "termekek" );
         $this->load->view('_header', $fejlec_data);
-
-        $termekek = $this->termek_model->select_termek();
+        $where = array('arhiv' => 0);
+        $termekek = $this->termek_model->select_termek($where);
         $data['termekek'] = $termekek;
         $this->load->view('termekek', $data);
     }
@@ -226,6 +226,32 @@ class Termekek extends CI_Controller {
         $success = "Sikeres termék módosítás! A módosított termék id-ja: ".$id;
         $this->session->set_flashdata('success', $success);
         redirect('termekek/termek_reszletek/'.$id);
+    }
+
+    public function termek_arhivalasa()
+    {
+        $this->load->library('form_validation');
+        
+        $this->form_validation->set_rules('termek_id', 'Termék id', 'trim|required');
+        
+        if($this->form_validation->run() == FALSE) {
+            $errors = validation_errors();
+            $this->session->set_flashdata('errors', $errors);
+            $this->session->set_flashdata('last_request', $this->input->post());
+            redirect('termekek');
+        } 
+
+        $id = $this->input->post('termek_id');
+
+        $data = array(
+            'arhiv' => 1, 
+            'kiemelt' => 0, 
+        );
+        
+        $this->termek_model->update_termek($id, $data);
+        $success = "Sikeres termék arhiválás! Az arhivált termék id-ja: ".$id;
+        $this->session->set_flashdata('success', $success);
+        redirect('termekek');
     }
 }
 

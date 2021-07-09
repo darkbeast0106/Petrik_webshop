@@ -13,7 +13,10 @@
                     <div class="row">
                     <button onclick="kosarba(<?php echo $termek['id'] ?>, `<?php echo $termek['nev'] ?>`, <?php echo $termek['ar'] ?>)" class="btn btn-primary col-12">Kosárba</button>
                     <?php if ($this->session->userdata('user') != null && $this->session->userdata('user')['jogosultsag'] > 0): ?>
-                        <a href="#" class="btn btn-danger col-6">Törlés</a>
+                        <form class="col-6 p-0" action="<?php echo base_url() ?>termekek/termek_arhivalasa" method="post" onsubmit="confirm('Biztosan szeretné törölni a terméket?')">
+                            <input type="hidden" name="termek_id" value="<?php echo $termek['id'] ?>">
+                            <button style="width: 100%;" class="btn btn-danger">Törlés</button>
+                        </form>
                         <a href="<?php echo base_url()."termekek/termek_modositasa/".$termek['id'] ; ?>"  class="btn btn-warning col-6">Módosít</a>
                     <?php endif; ?>
                     </div>
