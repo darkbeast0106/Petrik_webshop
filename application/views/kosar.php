@@ -1,5 +1,5 @@
 <div class="container">
-
+<form action="<?php echo base_url() ?>kosar/kosar_frissit" method="post">
 <table class="table" cellpadding="6" cellspacing="1" style="width:100%" border="0">
 <thead>
 <tr>
@@ -61,6 +61,7 @@
         <button class="btn btn-primary" data-toggle="modal" data-target="#rendeles_modal">Megrendel</button>
     </div>
     <?php endif; ?>
+    </form>
 </div>
 
 <!-- The Modal -->

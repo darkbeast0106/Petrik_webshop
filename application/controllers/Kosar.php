@@ -59,6 +59,19 @@ class Kosar extends CI_Controller {
     {
         echo json_encode($this->cart->contents(), JSON_UNESCAPED_UNICODE);
     }
+
+    public function kosar_frissit()
+    {
+        foreach ($this->input->post() as $item) {
+            $data = array(
+                'rowid' => $item['rowid'],
+                'qty'   => $item['qty']
+            );        
+            $this->cart->update($data);
+        }     
+        
+        redirect('kosar');           
+    }
 }
 
 /* End of file Kosar.php */
