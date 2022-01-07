@@ -34,3 +34,6 @@ util/img/upload/*
 !util/img/upload/index.html
 .vscode
 .vscode/*
+.env
+.env.*
+!.env.example
