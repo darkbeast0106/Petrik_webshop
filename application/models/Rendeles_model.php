@@ -35,9 +35,9 @@ class Rendeles_model extends CI_Model {
         'ar' => 100,
      );
     */
-    public function select_rendeles($where = "")
+    public function select_rendeles($where = [])
     {
-        if ($where != "") {
+        if (!empty($where)) {
             foreach ($where as $key => $value) {
                 $this->db->where($key, $value);
             }
@@ -68,9 +68,9 @@ class Rendeles_model extends CI_Model {
         'ar' => 100,
      );
     */
-    public function select_rendeles_tetel($where = "")
+    public function select_rendeles_tetel($where = [])
     {
-        if ($where != "") {
+        if (!empty($where)) {
             foreach ($where as $key => $value) {
                 $this->db->where($key, $value);
             }

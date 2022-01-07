@@ -35,9 +35,9 @@ class Felhasznalo_model extends CI_Model {
         'ar' => 100,
      );
     */
-    public function select_felhasznalo($where = "")
+    public function select_felhasznalo($where = [])
     {
-        if ($where != "") {
+        if (!empty($where)) {
             foreach ($where as $key => $value) {
                 $this->db->where($key, $value);
             }

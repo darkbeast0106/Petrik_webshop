@@ -35,9 +35,9 @@ class Termek_model extends CI_Model {
         'ar' => 100,
      );
     */
-    public function select_termek($where = "")
+    public function select_termek($where = [])
     {
-        if ($where != "") {
+        if (!empty($where)) {
             foreach ($where as $key => $value) {
                 $this->db->where($key, $value);
             }
