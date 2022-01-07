@@ -26,7 +26,7 @@
                                 <?php if ($termek['kiemelt'] == 0): ?>
                                 <form class="col-12 p-0" action="<?php echo base_url() ?>termekek/termek_kiemeles" method="post" onsubmit="return confirm('Biztosan szeretné kiemelni a terméket?')">
                                 <input type="hidden" name="termek_id" value="<?php echo $termek['id'] ?>">
-                                <input type="hidden" name="kiemelt" value="0">
+                                <input type="hidden" name="kiemelt" value="1">
                                 <input type="hidden" name="reszletek" value="0">
                                 <button style="width: 100%;" class="btn btn-info">Kiemelés</button>                                    
                                 <?php else: ?>
