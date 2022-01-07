@@ -37,6 +37,7 @@
                 </div>
             </div>
     </div>
+	
 <script>
 function kosarba(id, nev, ar) {
     var url = "<?php echo base_url(); ?>kosar/kosar_insert"
@@ -55,5 +56,6 @@ function kosarba(id, nev, ar) {
     );
 }
 </script>
+
 </body>
 </html>
