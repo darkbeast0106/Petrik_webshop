@@ -1,5 +1,4 @@
 <?php 
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Termekek extends CI_Controller {
@@ -50,7 +49,7 @@ class Termekek extends CI_Controller {
         $fejlec_data = array('active_page' => "termek_hozzaadasa" );
         $this->load->view('_header', $fejlec_data);
 
-        $this->load->view('termek-add');
+        $this->load->view('termek_add');
     }
 
     public function termek_add_post()
