@@ -1,4 +1,6 @@
 <div class="container">
+    
+<!-- TODO: kosár frissítés átalakítása ajaxra -->
 <form action="<?php echo base_url() ?>kosar/kosar_frissit" method="post">
 <table class="table" cellpadding="6" cellspacing="1" style="width:100%" border="0">
 <thead>
@@ -57,8 +59,10 @@
     <?php if (count($this->cart->contents()) > 0): ?>
     
     <div style="text-align: right;">
+        
+        <!-- TODO: kosár frissítés átalakítása ajaxra -->
         <button class="btn btn-primary">Kosár frissítése</button>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#rendeles_modal">Megrendel</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rendeles_modal">Megrendel</button>
     </div>
     <?php endif; ?>
     </form>
@@ -68,7 +72,8 @@
 <div class="modal" id="rendeles_modal">
   <div class="modal-dialog">
     <div class="modal-content">
-
+    
+    <?php if ($this->session->userdata('user') != null): ?>
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">Rendelési adatok</h4>
@@ -76,25 +81,41 @@
       </div>
 
       <form method="post" action="<?php echo base_url() ?>rendeles/rendeles_felvetele">
-      <!-- Modal body -->
-      <div class="modal-body">
-            <div class="form-group">
-                <label class="col-form-label mt-4" for="szallitasi_cim">Szállítási cím</label>
-                <input type="text" class="form-control" placeholder="Szállítási cím" id="szallitasi_cim" name="szallitasi_cim" required maxlength="200">
-            </div>
-            <div class="form-group">
-            <label for="megjegyzes" class="form-label mt-4">Megjegyzes</label>
-            <textarea class="form-control" id="megjegyzes" rows="3" name="megjegyzes"></textarea>
-            </div> 
-      </div>
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <!-- TODO: kosár frissítése javascripttel -->
-        <button type="submit" class="btn btn-primary">Megrendel</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Mégse</button>
-      </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-form-label mt-4" for="szallitasi_cim">Szállítási cím</label>
+                    <input type="text" class="form-control" placeholder="Szállítási cím" id="szallitasi_cim" name="szallitasi_cim" required maxlength="200">
+                </div>
+                <div class="form-group">
+                <label for="megjegyzes" class="form-label mt-4">Megjegyzes</label>
+                <textarea class="form-control" id="megjegyzes" rows="3" name="megjegyzes"></textarea>
+                </div> 
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Megrendel</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Mégse</button>
+        </div>
     
       </form>
+      
+    <?php else: ?>
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Sikertelen rendelés</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <h4>A rendeléshez jelentkezz be!</h4>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Bezár</button>
+        </div>
+    <?php endif; ?>
     </div>
   </div>
 </div>

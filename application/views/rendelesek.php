@@ -1,5 +1,5 @@
 <div class="container">
-    <?php if ($this->session->userdata('user')['jogosultsag'] == 2): ?>
+    <?php if ($this->session->userdata('user')['jogosultsag'] >= 1): ?>
         <?php if ($osszes): ?>
         <a href="<?php echo base_url() ?>rendeles" class="btn btn-lg btn-primary mt-3 mb-3"  style="width: 100%;">Csak a saját rendelések megjelenítése</a>
         <?php else: ?>

@@ -60,6 +60,7 @@ class Kosar extends CI_Controller {
         echo json_encode($this->cart->contents(), JSON_UNESCAPED_UNICODE);
     }
 
+    // TODO: kosár frissítés átalakítása ajaxra
     public function kosar_frissit()
     {
         foreach ($this->input->post() as $item) {

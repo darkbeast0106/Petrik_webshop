@@ -23,7 +23,7 @@ class Rendeles extends CI_Controller {
         $data = array();
 
         $where = array('rendelo_id' => $this->session->userdata('user')['id'] );
-        if ($this->session->userdata('user')['jogosultsag'] == 2 && $osszes == "osszes") {
+        if ($this->session->userdata('user')['jogosultsag'] >= 1 && $osszes == "osszes") {
             $where = "";
             $data['osszes'] = true;
         } else{
@@ -56,6 +56,11 @@ class Rendeles extends CI_Controller {
     
     public function rendeles_felvetele()
     {
+        if ($this->session->userdata('user') == null) {
+            $errors = "Rendeléshez előbb jelentkezz be.";
+            $this->session->set_flashdata('errors', $errors);
+            redirect('kosar');
+        }
         $this->load->library('form_validation');
         $this->form_validation->set_rules('szallitasi_cim', 'Szállítási cím', 'trim|required|max_length[200]');
         $this->form_validation->set_rules('megjegyzes', 'Megjegyzés', 'trim'); 
