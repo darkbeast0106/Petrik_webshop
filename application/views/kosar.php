@@ -2,7 +2,7 @@
     
 <!-- TODO: kosár frissítés átalakítása ajaxra -->
 <form action="<?php echo base_url() ?>kosar/kosar_frissit" method="post">
-<table class="table" cellpadding="6" cellspacing="1" style="width:100%" border="0">
+<table class="table" cellpadding="6" cellspacing="1" style="width:100%">
 <thead>
 <tr>
     <th>Termék neve</th>
